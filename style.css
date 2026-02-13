@@ -247,3 +247,9 @@ canvas {
   pointer-events: none;
   z-index: 0;
 }
+.glass-popup.active {
+    display: block;
+}
+.overlay.active {
+    display: block;
+}
