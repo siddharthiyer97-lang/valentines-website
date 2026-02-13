@@ -72,10 +72,15 @@ function openMemory(i) {
     overlay.style.display = "block";
 }
 
-function closeAll() {
-    document.getElementById("memoryPopup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
+function closeAll(){
+    document.getElementById("memoryPopup").style.display="none";
+    document.getElementById("overlay").style.display="none";
+
+    // restore button on top again
+    const button = document.querySelector(".romantic-btn");
+    button.style.zIndex = "10000";
 }
+
 
 
 /* ============================= */
@@ -83,9 +88,9 @@ function closeAll() {
 /* ============================= */
 
 function showLetter() {
-
     const popup = document.getElementById("memoryPopup");
     const overlay = document.getElementById("overlay");
+    const button = document.querySelector(".romantic-btn");
 
     popup.innerHTML = `
         <div class="letter-content">
@@ -131,7 +136,11 @@ function showLetter() {
 
     popup.style.display = "block";
     overlay.style.display = "block";
+
+    // 👇 lower button behind popup
+    button.style.zIndex = "1";
 }
+
 
 
 /* ============================= */
