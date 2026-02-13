@@ -14,7 +14,9 @@ overflow-x:hidden;
 100%{background-position:0% 50%;}
 }
 
-.hidden{display:none;}
+.hidden{
+    display: none !important;
+}
 
 .lock-screen,.loading-screen{
 height:100vh;
