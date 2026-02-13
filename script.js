@@ -172,7 +172,6 @@ window.addEventListener("DOMContentLoaded", () => {
     if (music) {
         music.volume = 0.5;
 
-        // Some browsers block autoplay, so force play
         music.play().catch(() => {
             document.body.addEventListener("click", () => {
                 music.play();
@@ -180,6 +179,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
 
 document.addEventListener("click", ()=>{
     const music = document.getElementById("bgMusic");
