@@ -1,49 +1,34 @@
-/* ============================= */
-/* 🔐 UNLOCK PAGE (index.html) */
-/* ============================= */
-
 function unlock(){
-    const input = document.getElementById("passwordInput");
-    if(!input) return;
+const pass=document.getElementById("passwordInput").value.trim();
 
-    const pass = input.value.trim();
+if(pass==="16112025"){
+document.getElementById("lockScreen").classList.add("hidden");
+document.getElementById("loadingScreen").classList.remove("hidden");
 
-    if(pass === "16112025"){
-        document.getElementById("lockScreen")?.classList.add("hidden");
-        document.getElementById("loadingScreen")?.classList.remove("hidden");
+setTimeout(()=>{
+document.getElementById("loadingScreen").classList.add("hidden");
+document.getElementById("mainSite").classList.remove("hidden");
 
-        setTimeout(()=>{
-            document.getElementById("loadingScreen")?.classList.add("hidden");
-            document.getElementById("mainSite")?.classList.remove("hidden");
+let music=document.getElementById("bgMusic");
+music.volume=0;
+music.play();
+let fade=setInterval(()=>{
+if(music.volume<0.5) music.volume+=0.05;
+else clearInterval(fade);
+},300);
 
-            const music = document.getElementById("bgMusic");
-            if(music){
-                music.volume = 0;
-                music.play();
-                let fade = setInterval(()=>{
-                    if(music.volume < 0.5) music.volume += 0.05;
-                    else clearInterval(fade);
-                },300);
-            }
+initPetals();
 
-            initPetals();
+},2500);
 
-        },2500);
-
-    }else{
-        const error = document.getElementById("error");
-        if(error) error.innerText = "Wrong date wifey 😛";
-    }
+}else{
+document.getElementById("error").innerText="Wrong date wifey 😛";
+}
 }
 
 function goToSurprise(){
-    window.location = "surprise.html";
+window.location="surprise.html";
 }
-
-
-/* ============================= */
-/* 🎈 SURPRISE PAGE */
-/* ============================= */
 
 const images=[
 "assets/1st date.jpg",
@@ -64,119 +49,109 @@ const notes=[
 ];
 
 function openMemory(i){
-    const popup = document.getElementById("memoryPopup");
-    const overlay = document.getElementById("overlay");
-    if(!popup || !overlay) return;
-
-    popup.innerHTML = `
-        <img src="${images[i]}" class="memory-img">
-        <p>${notes[i]}</p>
-    `;
-
-    popup.style.display = "block";
-    overlay.style.display = "block";
+const popup=document.getElementById("memoryPopup");
+popup.innerHTML=`<img src="${images[i]}" class="memory-img"><p>${notes[i]}</p>`;
+popup.style.display="block";
+document.getElementById("overlay").style.display="block";
 }
 
 function closeAll(){
-    document.getElementById("memoryPopup")?.style.setProperty("display","none");
-    document.getElementById("overlay")?.style.setProperty("display","none");
+document.getElementById("memoryPopup").style.display="none";
+document.getElementById("overlay").style.display="none";
 }
 
+/* Sparkle */
+document.addEventListener("mousemove",(e)=>{
+let s=document.createElement("div");
+s.className="sparkle";
+s.style.left=e.pageX+"px";
+s.style.top=e.pageY+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),600);
+});
 
-/* ============================= */
-/* 💌 LOVE LETTER */
-/* ============================= */
+/* Petals */
+function initPetals(){
+const canvas=document.getElementById("petals");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const petalImg=new Image();
+petalImg.src="assets/petal.png";
+
+let petals=[];
+
+class Petal{
+constructor(){
+this.x=Math.random()*canvas.width;
+this.y=Math.random()*canvas.height;
+this.size=Math.random()*80+60;
+this.speedY=Math.random()*1+0.5;
+this.speedX=Math.random()*1-0.5;
+this.rotation=Math.random()*360;
+}
+update(){
+this.y+=this.speedY;
+this.x+=this.speedX;
+this.rotation+=0.5;
+if(this.y>canvas.height){
+this.y=-50;
+this.x=Math.random()*canvas.width;
+}
+}
+draw(){
+ctx.save();
+ctx.translate(this.x,this.y);
+ctx.rotate(this.rotation*Math.PI/180);
+ctx.drawImage(petalImg,-this.size/2,-this.size/2,this.size,this.size);
+ctx.restore();
+}
+}
+
+for(let i=0;i<30;i++){petals.push(new Petal());}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+petals.forEach(p=>{p.update();p.draw();});
+requestAnimationFrame(animate);
+}
+animate();
+}
 
 function showLetter() {
     const popup = document.getElementById("memoryPopup");
     const overlay = document.getElementById("overlay");
-    if(!popup || !overlay) return;
 
-    popup.innerHTML = `
-        <div class="letter-content">
-            💖 My Love 💖 <br><br>
-            I appreciate you more than you’ll ever know.
-            You make my life softer, warmer, and happier.
-            Thank you for being my peace and my forever. 💕
-        </div>
-    `;
+   popup.innerHTML = `
+<div class="letter-content">
+Heyy wifey,<br><br>
 
-    popup.style.display = "block";
-    overlay.style.display = "block";
-}
+I just wanted to let you know how grateful I am to have you in my life. 
+My life was bleak, lifeless — and you brought back the colour. 
+With it, you taught me to never lose hope; that maybe someone, someday, 
+would enter my life and have the capacity to hold my heart 
+in the same way I’d hold theirs.<br><br>
 
+Seeing your recent achievements — especially getting admitted into TUM — 
+just makes me so proud of you. This is our year. 
+I am 100% going to make it happen, I give you my word. 
+Soon enough we will be reminiscing over our dreams which we made a reality.<br><br>
 
-/* ============================= */
-/* ✨ SPARKLE EFFECT */
-/* ============================= */
+I love you, Nitya Premkumar Nair. 
+I want to spend the rest of my life with you — grow old and stay together, 
+till death takes us apart. And even then, I’ll meet you beyond the gates of judgement, 
+in the endless paradise where we will reunite once again.<br><br>
 
-document.addEventListener("mousemove",(e)=>{
-    let s=document.createElement("div");
-    s.className="sparkle";
-    s.style.left=e.pageX+"px";
-    s.style.top=e.pageY+"px";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),600);
-});
+I sincerely am grateful to you for gracing my life with your presence. 
+Here’s to our first Valentine’s together — may we prosper, 
+grow as individuals, and most importantly, choose each other every single day.<br><br>
 
+Your husband, with much love,<br>
+Siddharth 💞
+</div>
+`;
 
-/* ============================= */
-/* 🌸 PETALS (SAFE INIT) */
-/* ============================= */
-
-function initPetals(){
-
-    const canvas=document.getElementById("petals");
-    if(!canvas) return;   // 🔥 important
-
-    const ctx=canvas.getContext("2d");
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
-
-    const petalImg=new Image();
-    petalImg.src="assets/petal.png";
-
-    let petals=[];
-
-    class Petal{
-        constructor(){
-            this.x=Math.random()*canvas.width;
-            this.y=Math.random()*canvas.height;
-            this.size=Math.random()*80+60;
-            this.speedY=Math.random()*1+0.5;
-            this.speedX=Math.random()*1-0.5;
-            this.rotation=Math.random()*360;
-        }
-        update(){
-            this.y+=this.speedY;
-            this.x+=this.speedX;
-            this.rotation+=0.5;
-            if(this.y>canvas.height){
-                this.y=-50;
-                this.x=Math.random()*canvas.width;
-            }
-        }
-        draw(){
-            ctx.save();
-            ctx.translate(this.x,this.y);
-            ctx.rotate(this.rotation*Math.PI/180);
-            ctx.drawImage(petalImg,-this.size/2,-this.size/2,this.size,this.size);
-            ctx.restore();
-        }
-    }
-
-    for(let i=0;i<30;i++){
-        petals.push(new Petal());
-    }
-
-    function animate(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        petals.forEach(p=>{
-            p.update();
-            p.draw();
-        });
-        requestAnimationFrame(animate);
-    }
-
-    animate();
+    popup.classList.add("active");
+    overlay.classList.add("active");
 }
