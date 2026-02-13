@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Memories 💖</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Brittany&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="petals"></canvas>
+<div class="vignette"></div>
+
+<div class="balloon-container">
+<div class="balloon red" onclick="openMemory(0)"></div>
+<div class="balloon sky" onclick="openMemory(1)"></div>
+<div class="balloon pink" onclick="openMemory(2)"></div>
+<div class="balloon white" onclick="openMemory(3)"></div>
+<div class="balloon green" onclick="openMemory(4)"></div>
+<div class="balloon beige" onclick="openMemory(5)"></div>
+</div>
+
+<button class="romantic-btn" onclick="showLetter()">
+❤️I appreciate you❤️
+</button>
+
+<div id="memoryPopup" class="glass-popup"></div>
+<div id="overlay" class="overlay" onclick="closeAll()"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

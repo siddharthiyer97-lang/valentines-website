@@ -1,0 +1,191 @@
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Brittany',cursive;
+background:linear-gradient(-45deg,#ffd6e8,#fff5f5,#ffe6f2,#fff0f8);
+background-size:400% 400%;
+animation:gradient 18s ease infinite;
+overflow-x:hidden;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.hidden{display:none;}
+
+.lock-screen,.loading-screen{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(#ffd6e8,#fff5f5);
+text-align:center;
+}
+
+.lock-screen input{
+padding:10px;
+border-radius:20px;
+border:none;
+margin:10px;
+text-align:center;
+}
+
+.lock-screen button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff8fa3;
+color:white;
+cursor:pointer;
+}
+
+.loader-heart{
+font-size:50px;
+animation:beat 1s infinite;
+}
+
+@keyframes beat{
+0%,100%{transform:scale(1);}
+50%{transform:scale(1.2);}
+}
+
+.vignette{
+position:fixed;
+width:100%;
+height:100%;
+box-shadow:inset 0 0 200px rgba(0,0,0,0.3);
+pointer-events:none;
+z-index:1;
+}
+
+.center-content{
+position:relative;
+z-index:2;
+text-align:center;
+padding-top:15vh;
+}
+
+.glow{
+color:#b76e79;
+text-shadow:0 0 10px pink,0 0 20px white;
+font-size:clamp(28px,5vw,55px);
+}
+
+.heartbeat{animation:beat 2s infinite;}
+
+.cat{width:150px;}
+
+.romantic-btn{
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:#ff8fa3;
+color:white;
+cursor:pointer;
+transition:.4s;
+}
+
+.romantic-btn:hover{
+background:white;
+color:#ff4d6d;
+transform:scale(1.1);
+}
+
+.corner{
+position:fixed;
+width:100px;
+z-index:2;
+}
+
+.top-left{top:10px;left:10px;}
+.top-right{top:10px;right:10px;}
+.bottom-left{bottom:10px;left:10px;}
+.bottom-right{bottom:10px;right:10px;}
+
+.below-btn{
+display:block;
+margin:20px auto;
+width:110px;
+}
+
+.balloon-container{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-top:15vh;
+flex-wrap:wrap;
+}
+
+.balloon{
+width:70px;
+height:90px;
+border-radius:50% 50% 45% 45%;
+cursor:pointer;
+animation:bob 3s infinite;
+}
+
+@keyframes bob{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-20px);}
+}
+
+.red{background:red;}
+.sky{background:skyblue;}
+.pink{background:lightpink;}
+.white{background:white;}
+.green{background:lightgreen;}
+.beige{background:#f5deb3;}
+
+.glass-popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(20px);
+padding:30px;
+border-radius:25px;
+display:none;
+z-index:3;
+max-width:500px;
+text-align:center;
+box-shadow:0 0 40px rgba(255,255,255,0.4);
+}
+
+.memory-img{
+width:100%;
+border-radius:20px;
+animation:kenburns 12s ease-in-out infinite alternate;
+}
+
+@keyframes kenburns{
+0%{transform:scale(1);}
+100%{transform:scale(1.1);}
+}
+
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(5px);
+display:none;
+z-index:2;
+}
+
+.sparkle{
+position:absolute;
+width:14px;
+height:14px;
+background:url('assets/sparkle.png') no-repeat center/contain;
+pointer-events:none;
+animation:spark 0.6s linear forwards;
+}
+
+@keyframes spark{
+to{opacity:0;transform:scale(0);}
+}

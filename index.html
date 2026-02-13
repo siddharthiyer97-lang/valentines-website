@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Wifey 💕</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Brittany&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="lock-screen" id="lockScreen">
+<h2>Enter the date our story began 💖</h2>
+<input type="password" id="passwordInput" placeholder="DDMMYYYY">
+<button onclick="unlock()">Unlock</button>
+<p id="error"></p>
+</div>
+
+<div class="loading-screen hidden" id="loadingScreen">
+<div class="loader-heart">💖</div>
+<p>Unlocking our memories...</p>
+</div>
+
+<div class="main-site hidden" id="mainSite">
+
+<canvas id="petals"></canvas>
+<div class="vignette"></div>
+
+<audio id="bgMusic" loop>
+<source src="assets/love-story.mp3" type="audio/mp3">
+</audio>
+
+<img src="assets/top-left.gif" class="corner top-left">
+<img src="assets/top-right.gif" class="corner top-right">
+<img src="assets/bottom-left.gif" class="corner bottom-left">
+<img src="assets/bottom-right.gif" class="corner bottom-right">
+
+<div class="center-content">
+<img src="assets/cat.gif" class="cat">
+
+<h1 class="glow heartbeat">
+🥰happy valentines day wifey🥰
+</h1>
+
+<button class="romantic-btn" onclick="goToSurprise()">
+a small surprise for wifey
+</button>
+
+<img src="assets/middle.gif" class="below-btn">
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
