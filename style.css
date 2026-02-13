@@ -120,20 +120,22 @@ width:110px;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: auto;   /* allow clicks */
-  cursor: pointer;
-  z-index: 9999;   /* 🔥 ADD THIS */
+  pointer-events: none;   /* 👈 KEY */
+  z-index: 9999;
 }
 
 .balloon{
   position: absolute;
-  bottom: -200px;              /* start below screen */
+  bottom: -200px;          /* start below screen */
   width: 140px;
   height: 180px;
   border-radius: 50% 50% 45% 45%;
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
   filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
   animation: floatUp 14s linear infinite;
+
+  pointer-events: auto;    /* 👈 allow clicking */
+  cursor: pointer;         /* 👈 show hand cursor */
 }
 
 @keyframes floatUp {
