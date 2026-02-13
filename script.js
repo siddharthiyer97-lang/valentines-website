@@ -9,14 +9,6 @@ setTimeout(()=>{
 document.getElementById("loadingScreen").classList.add("hidden");
 document.getElementById("mainSite").classList.remove("hidden");
 
-let music=document.getElementById("bgMusic");
-music.volume=0;
-music.play();
-let fade=setInterval(()=>{
-if(music.volume<0.5) music.volume+=0.05;
-else clearInterval(fade);
-},300);
-
 initPetals();
 
 },2500);
@@ -27,8 +19,10 @@ document.getElementById("error").innerText="Wrong date wifey 😛";
 }
 
 function goToSurprise(){
+localStorage.setItem("musicTime", document.getElementById("bgMusic").currentTime);
 window.location="surprise.html";
 }
+
 
 const images=[
 "assets/1st date.jpg",
@@ -122,36 +116,72 @@ animate();
 function showLetter() {
     const popup = document.getElementById("memoryPopup");
     const overlay = document.getElementById("overlay");
+    const button = document.querySelector(".romantic-btn");
 
-   popup.innerHTML = `
-<div class="letter-content">
-Heyy wifey,<br><br>
+    popup.innerHTML = `
+        <div class="letter-content">
+            <p>Heyy wifey,</p>
 
-I just wanted to let you know how grateful I am to have you in my life. 
-My life was bleak, lifeless — and you brought back the colour. 
-With it, you taught me to never lose hope; that maybe someone, someday, 
-would enter my life and have the capacity to hold my heart 
-in the same way I’d hold theirs.<br><br>
+            <p>
+            I just wanted to let you know how grateful I am to have you in my life.
+            My life was bleak, lifeless — and you brought back the colour.
+            With it, you taught me to never lose hope; that maybe someone,
+            someday, would enter my life and have the capacity to hold my heart
+            in the same way I'd hold theirs.
+            </p>
 
-Seeing your recent achievements — especially getting admitted into TUM — 
-just makes me so proud of you. This is our year. 
-I am 100% going to make it happen, I give you my word. 
-Soon enough we will be reminiscing over our dreams which we made a reality.<br><br>
+            <p>
+            Seeing your recent achievements — especially getting admitted into TUM —
+            just makes me so proud of you. This is our year.
+            I am 100% going to make it happen, I give you my word.
+            Soon enough we will be reminiscing over our dreams
+            which we made a reality.
+            </p>
 
-I love you, Nitya Premkumar Nair. 
-I want to spend the rest of my life with you — grow old and stay together, 
-till death takes us apart. And even then, I’ll meet you beyond the gates of judgement, 
-in the endless paradise where we will reunite once again.<br><br>
+            <p>
+            I love you, Nitya Premkumar Nair.
+            I want to spend the rest of my life with you —
+            grow old and stay together, till death takes us apart;
+            and even then, I’ll meet you beyond the gates of judgement,
+            in the endless paradise, where we will reunite once again.
+            </p>
 
-I sincerely am grateful to you for gracing my life with your presence. 
-Here’s to our first Valentine’s together — may we prosper, 
-grow as individuals, and most importantly, choose each other every single day.<br><br>
+            <p>
+            I sincerely am grateful to you for gracing my life with your presence.
+            Here’s to our first Valentine’s together —
+            may we prosper, grow as individuals,
+            and most importantly, choose each other every single day.
+            </p>
 
-Your husband, with much love,<br>
-Siddharth 💞
-</div>
-`;
+            <p>
+            Your husband, with much love,<br>
+            Siddharth 💞
+            </p>
+        </div>
+    `;
 
-    popup.classList.add("active");
-    overlay.classList.add("active");
+    popup.style.display = "block";
+    overlay.style.display = "block";
+
+    // 👇 hide the button
+    button.style.display = "none";
 }
+window.addEventListener("DOMContentLoaded", () => {
+    const music = document.getElementById("bgMusic");
+
+    if (music) {
+        music.volume = 0.5;
+
+        // Some browsers block autoplay, so force play
+        music.play().catch(() => {
+            document.body.addEventListener("click", () => {
+                music.play();
+            }, { once: true });
+        });
+    }
+});
+
+document.addEventListener("click", ()=>{
+    const music = document.getElementById("bgMusic");
+    music.play();
+}, { once: true });
