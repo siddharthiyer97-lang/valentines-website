@@ -1,18 +1,18 @@
-/* ============================= */
-/* LOCK SCREEN (MAIN PAGE ONLY) */
-/* ============================= */
+/* =========================
+   LOCK SCREEN
+========================= */
 
 function unlock() {
     const pass = document.getElementById("passwordInput").value.trim();
 
     if (pass === "16112025") {
-
         document.getElementById("lockScreen").classList.add("hidden");
         document.getElementById("loadingScreen").classList.remove("hidden");
 
         setTimeout(() => {
             document.getElementById("loadingScreen").classList.add("hidden");
             document.getElementById("mainSite").classList.remove("hidden");
+
             initPetals();
         }, 2500);
 
@@ -21,25 +21,17 @@ function unlock() {
     }
 }
 
-
-/* ============================= */
-/* PAGE NAVIGATION + MUSIC SAVE */
-/* ============================= */
+/* =========================
+   NAVIGATION
+========================= */
 
 function goToSurprise() {
-    const music = document.getElementById("bgMusic");
-
-    if (music) {
-        localStorage.setItem("musicTime", music.currentTime);
-    }
-
     window.location = "surprise.html";
 }
 
-
-/* ============================= */
-/* MEMORY BALLOONS */
-/* ============================= */
+/* =========================
+   MEMORIES DATA
+========================= */
 
 const images = [
     "assets/1st date.jpg",
@@ -59,6 +51,10 @@ const notes = [
     "me and my senorita enjoying tacos"
 ];
 
+/* =========================
+   OPEN MEMORY
+========================= */
+
 function openMemory(i) {
     const popup = document.getElementById("memoryPopup");
     const overlay = document.getElementById("overlay");
@@ -72,25 +68,13 @@ function openMemory(i) {
     overlay.style.display = "block";
 }
 
-function closeAll(){
-    document.getElementById("memoryPopup").style.display="none";
-    document.getElementById("overlay").style.display="none";
-
-    // restore button on top again
-    const button = document.querySelector(".romantic-btn");
-    button.style.zIndex = "10000";
-}
-
-
-
-/* ============================= */
-/* LOVE LETTER */
-/* ============================= */
+/* =========================
+   LETTER POPUP
+========================= */
 
 function showLetter() {
     const popup = document.getElementById("memoryPopup");
     const overlay = document.getElementById("overlay");
-    const button = document.querySelector(".romantic-btn");
 
     popup.innerHTML = `
         <div class="letter-content">
@@ -136,33 +120,41 @@ function showLetter() {
 
     popup.style.display = "block";
     overlay.style.display = "block";
-
-    // 👇 lower button behind popup
-    button.style.zIndex = "1";
 }
 
+/* =========================
+   CLOSE POPUPS
+========================= */
 
+function closeAll() {
+    document.getElementById("memoryPopup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+}
 
-/* ============================= */
-/* SPARKLE EFFECT */
-/* ============================= */
+/* =========================
+   MUSIC (continuous)
+========================= */
 
-document.addEventListener("mousemove", (e) => {
-    let s = document.createElement("div");
-    s.className = "sparkle";
-    s.style.left = e.pageX + "px";
-    s.style.top = e.pageY + "px";
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 600);
+window.addEventListener("DOMContentLoaded", () => {
+    const music = document.getElementById("bgMusic");
+
+    if (music) {
+        music.loop = true;
+        music.volume = 0.5;
+
+        music.play().catch(() => {
+            document.body.addEventListener("click", () => {
+                music.play();
+            }, { once: true });
+        });
+    }
 });
 
-
-/* ============================= */
-/* PETALS */
-/* ============================= */
+/* =========================
+   PETALS
+========================= */
 
 function initPetals() {
-
     const canvas = document.getElementById("petals");
     if (!canvas) return;
 
@@ -221,29 +213,3 @@ function initPetals() {
     animate();
 }
 
-
-/* ============================= */
-/* MUSIC (WORKS ON BOTH PAGES) */
-/* ============================= */
-
-window.addEventListener("DOMContentLoaded", () => {
-
-    const music = document.getElementById("bgMusic");
-    if (!music) return;
-
-    music.loop = true;
-    music.volume = 0.5;
-
-    const savedTime = localStorage.getItem("musicTime");
-
-    if (savedTime) {
-        music.currentTime = parseFloat(savedTime);
-    }
-
-    music.play().catch(() => {
-        document.body.addEventListener("click", () => {
-            music.play();
-        }, { once: true });
-    });
-
-});
