@@ -86,7 +86,7 @@ class Petal{
 constructor(){
 this.x=Math.random()*canvas.width;
 this.y=Math.random()*canvas.height;
-this.size=Math.random()*25+15;
+this.size=Math.random()*80+60;
 this.speedY=Math.random()*1+0.5;
 this.speedX=Math.random()*1-0.5;
 this.rotation=Math.random()*360;
@@ -109,7 +109,7 @@ ctx.restore();
 }
 }
 
-for(let i=0;i<30;i++){petals.push(new Petal());}
+for(let i=0;i<120;i++){petals.push(new Petal());}
 
 function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
