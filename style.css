@@ -124,16 +124,14 @@ width:110px;
 }
 
 .balloon{
-    position: absolute;
-    width: 120px;
-    height: 160px;
-    border-radius: 50% 50% 45% 45%;
-    animation: floatUp 15s ease-in infinite;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.25);
-    opacity: 0;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-animation: floatUp 12s linear infinite;
+  position: absolute;
+  bottom: -200px;              /* start below screen */
+  width: 140px;
+  height: 180px;
+  border-radius: 50% 50% 45% 45%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+  animation: floatUp 14s linear infinite;
 }
 
 @keyframes floatUp {
